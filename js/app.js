@@ -31,6 +31,12 @@ const app = Vue.createApp({
         healPlayer() {
             const healValue = getRandomValue(8, 15);
             this.playerHealth += healValue;
+            if (this.playerHealth = 100) {
+                return healValue = 0;
+            }
+        },
+        surrender(){
+            this.winner = 'monster';
         },
         startNewGame(){
             this.playerHealth = 100;
@@ -70,15 +76,19 @@ const app = Vue.createApp({
         playerHealth(value) {
             if (value <= 0 && this.monsterHealth <= 0) {
                 // draw
+                this.winner = 'draw';
             } else if (value <= 0) {
                 // player lost
+                this.winner = 'monster';
             }
         },
         monsterHealth(value) {
             if (value <= 0 && this.playerHealth <=0) {
                 //draw
+                this.winner = 'draw';
             } else if (value <= 0) {
                 //monster lost
+                this.winner = 'player';
             }
         }
 
